@@ -1,5 +1,4 @@
 import { model, models, Schema } from "mongoose";
-import { StringValidation } from "zod";
 
 export interface IUser {
   name: string;
