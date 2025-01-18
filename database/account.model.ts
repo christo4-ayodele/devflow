@@ -9,7 +9,7 @@ export interface IAccount {
   providerAccountId: string;
 }
 
-const AccountSchema = new Schema(
+const AccountSchema = new Schema<IAccount>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     name: { type: String, required: true },
