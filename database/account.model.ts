@@ -2,11 +2,11 @@ import { model, models, Schema, Types } from "mongoose";
 
 export interface IAccount {
   userId: Types.ObjectId;
-  name: String;
-  image?: String;
-  password?: String;
-  provider: String;
-  providerAccountId: String;
+  name: string;
+  image?: string;
+  password?: string;
+  provider: string;
+  providerAccountId: string;
 }
 
 const AccountSchema = new Schema(
