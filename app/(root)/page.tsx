@@ -9,6 +9,7 @@ import handleError from "@/lib/handlers/error";
 
 import dbConnect from "@/lib/mongoose";
 import { ValidationError } from "@/lib/http-errors";
+import { api } from "@/lib/api";
 
 const questions = [
   {
@@ -53,10 +54,7 @@ const questions = [
 
 const test = async () => {
   try {
-    throw new ValidationError({
-      title: ["Required"],
-      tags: ['"JavaScript" is not a valid tag.'],
-    });
+    return await api.users.getById("678f472cbd77b2e3a3fbeb61");
   } catch (error) {
     return handleError(error);
   }
@@ -67,7 +65,8 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
-  const result = await test();
+  const users = await test();
+  console.log(users);
 
   const { query = "", filter = "" } = await searchParams;
 
