@@ -12,7 +12,7 @@ type ActionOptions<T> = {
   authorize?: boolean;
 };
 
-async function action<T>({
+export async function action<T>({
   params,
   schema,
   authorize = false,
