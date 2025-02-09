@@ -1,4 +1,3 @@
-import { RequestCookiesAdapter } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { NextResponse } from "next/server";
 import { RequestError, ValidationError } from "../http-errors";
 import { ZodError } from "zod";
