@@ -5,12 +5,6 @@ import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import QuestionCard from "@/components/cards/QuestionCard";
-import handleError from "@/lib/handlers/error";
-
-import dbConnect from "@/lib/mongoose";
-import { ValidationError } from "@/lib/http-errors";
-import { api } from "@/lib/api";
-import { auth } from "@/auth";
 
 const questions = [
   {

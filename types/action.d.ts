@@ -15,3 +15,9 @@ interface AuthCredentials {
   email: string;
   password: string;
 }
+
+interface createQueationParams {
+  title: string;
+  content: string;
+  tags: string[];
+}
