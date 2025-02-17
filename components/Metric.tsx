@@ -26,7 +26,7 @@ const Metric = ({
   const metricContent = (
     <>
       <Image
-        src={imgUrl}
+        src={imgUrl || "/public/images/default-logo.svg"}
         width={16}
         height={16}
         alt={alt}
