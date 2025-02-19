@@ -1,6 +1,15 @@
-import React from "react";
+import { getTags } from "@/lib/actions/tag.action";
 
-const Tags = () => {
+const Tags = async () => {
+  const { success, data, error } = await getTags({
+    page: 1,
+    pageSize: 2,
+    query: "javasc",
+  });
+
+  const tags = data || {};
+
+  console.log("TAGS", JSON.stringify(tags, null, 2));
   return <div>Tags</div>;
 };
 
