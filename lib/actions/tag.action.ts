@@ -4,7 +4,7 @@ import { FilterQuery } from "mongoose";
 import { action } from "../handlers/action";
 import handleError from "../handlers/error";
 import {
-  getTagQuestionsSchema,
+  GetTagQuestionsSchema,
   PaginatedSearchParamsSchema,
 } from "../validations";
 import { Question, Tag } from "@/database";
@@ -78,13 +78,13 @@ export const getTags = async (
 };
 
 export const getTagQuestions = async (
-  params: getTagQuestionsParams
+  params: GetTagQuestionsParams
 ): Promise<
   ActionResponse<{ tag: Tag; questions: Question[]; isNext: boolean }>
 > => {
   const validationResult = await action({
     params,
-    schema: getTagQuestionsSchema,
+    schema: GetTagQuestionsSchema,
   });
 
   if (validationResult instanceof Error) {
