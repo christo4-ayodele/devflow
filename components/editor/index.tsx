@@ -1,6 +1,5 @@
 "use client";
 
-import type { ForwardedRef } from "react";
 import {
   headingsPlugin,
   listsPlugin,
@@ -34,14 +33,15 @@ import "@mdxeditor/editor/style.css";
 import "./dark-editor.css";
 import { basicDark } from "cm6-theme-basic-dark";
 import { useTheme } from "next-themes";
+import { Ref } from "react";
 
 interface Props {
   value: string;
   fieldChange: (value: string) => void;
-  editorRef: ForwardedRef<MDXEditorMethods> | null;
+  editorRef: Ref<MDXEditorMethods> | null;
 }
 
-const Editor = ({ value, editorRef, fieldChange, ...props }: Props) => {
+const Editor = ({ value, editorRef, fieldChange }: Props) => {
   const { resolvedTheme } = useTheme();
 
   const theme = resolvedTheme === "dark" ? [basicDark] : [];
@@ -119,7 +119,6 @@ const Editor = ({ value, editorRef, fieldChange, ...props }: Props) => {
           ),
         }),
       ]}
-      {...props}
     />
   );
 };
