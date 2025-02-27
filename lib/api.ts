@@ -1,8 +1,7 @@
 import { IUser } from "@/database/user.model";
 import { fetchHandler } from "./handlers/fetch";
 import { IAccount } from "@/database/account.model";
-import { jsxPlugin } from "@mdxeditor/editor";
-import { json } from "stream/consumers";
+
 import ROUTES from "@/constants/routes";
 
 const API_BASE_URL =
@@ -63,5 +62,13 @@ export const api = {
       }),
     delete: (id: string) =>
       fetchHandler(`${API_BASE_URL}/accounts/${id}`, { method: "DELETE" }),
+  },
+
+  ai: {
+    getAnswer: (question: string, content: string): APIResponse<string> =>
+      fetchHandler(`${API_BASE_URL}/ai/answers`, {
+        method: "POST",
+        body: JSON.stringify({ question, content }),
+      }),
   },
 };
