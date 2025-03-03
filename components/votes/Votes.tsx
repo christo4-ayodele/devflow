@@ -22,6 +22,12 @@ const Votes = ({
   targetType,
   hasVotedPromise,
 }: Props) => {
+  if (upvotes === undefined) {
+    upvotes = 0;
+  }
+  if (downvotes === undefined) {
+    downvotes = 0;
+  }
   const session = useSession();
   const userId = session.data?.user?.id;
 

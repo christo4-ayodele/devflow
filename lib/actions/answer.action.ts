@@ -35,7 +35,15 @@ export async function createAnswer(
     if (!question) throw new Error("Question not found");
 
     const [newAnswer] = await Answer.create(
-      [{ author: userId, question: questionId, content }],
+      [
+        {
+          author: userId,
+          question: questionId,
+          content,
+          upvotes: 0,
+          downvotes: 0,
+        },
+      ],
       { session }
     );
 
