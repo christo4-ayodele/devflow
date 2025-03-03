@@ -66,7 +66,7 @@ export async function createVote(
 
   const userId = validationResult.session?.user?.id;
 
-  if (!userId) handleError(new Error("User not found")) as ErrorResponse;
+  if (!userId) return handleError(new Error("User not found")) as ErrorResponse;
 
   const session = await mongoose.startSession();
 
@@ -90,7 +90,7 @@ export async function createVote(
           session
         );
       } else {
-        // If the user has already voted with the same voteType, update the vote
+        // If the user has already voted with a different voteType, update the vote
 
         await Vote.findByIdAndUpdate(
           existingVote._id,
@@ -98,6 +98,10 @@ export async function createVote(
           { new: true, session }
         );
 
+        await updateVoteCount(
+          { targetId, targetType, voteType: existingVote.voteType, change: -1 },
+          session
+        );
         await updateVoteCount(
           { targetId, targetType, voteType, change: 1 },
           session
