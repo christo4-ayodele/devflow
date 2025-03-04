@@ -7,7 +7,7 @@ import { CollectionBaseSchema } from "../validations";
 import { revalidatePath } from "next/cache";
 import ROUTES from "@/constants/routes";
 
-export async function toggleSaveCollection(
+export async function toggleSaveQuestion(
   params: CollectionBaseParams
 ): Promise<ActionResponse<{ saved: boolean }>> {
   const validationResult = await action({
