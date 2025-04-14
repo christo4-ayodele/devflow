@@ -28,6 +28,7 @@ export async function getUsers(
   if (query) {
     filterQuery.$or = [
       { name: { $regex: query, $options: "i" } },
+      { username: { $regex: query, $options: "i" } },
       { email: { $regex: query, $options: "i" } },
     ];
   }
