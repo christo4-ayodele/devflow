@@ -31,3 +31,10 @@ export const UserFilters = [
   { name: "Oldest", value: "oldest" },
   { name: "Popular", value: "popular" },
 ];
+
+export const TagQuestionFilters = [
+  { name: "Newest", value: "newest" },
+  { name: "Popular", value: "popular" },
+  { name: "Unanswered", value: "unanswered" },
+  { name: "Oldest", value: "oldest" },
+];

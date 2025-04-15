@@ -8,8 +8,6 @@ import {
   PaginatedSearchParamsSchema,
 } from "../validations";
 import { Question, Tag } from "@/database";
-import { filter } from "@mdxeditor/editor";
-import { skip } from "node:test";
 
 export const getTags = async (
   params: PaginatedSearchParams
@@ -91,7 +89,7 @@ export const getTagQuestions = async (
     return handleError(validationResult) as ErrorResponse;
   }
 
-  const { page = 1, pageSize = 10, query, tagId } = params;
+  const { page = 1, pageSize = 10, query, filter, tagId } = params;
 
   const skip = (Number(page) - 1) * pageSize;
   const limit = Number(pageSize);
@@ -108,6 +106,32 @@ export const getTagQuestions = async (
     if (query) {
       filterQuery.title = { $regex: query, $options: "i" };
     }
+
+    let sortCriteria = {};
+
+    switch (filter) {
+      case "newest":
+        sortCriteria = { createdAt: -1 };
+        break;
+
+      case "oldest":
+        sortCriteria = { createdAt: 1 };
+        break;
+
+      case "unanswered":
+        filterQuery.answers = 0;
+        sortCriteria = { createdAt: -1 };
+        break;
+
+      case "popular":
+        sortCriteria = { upvotes: -1 };
+        break;
+
+      default:
+        sortCriteria = { createdAt: -1 };
+        break;
+    }
+
     const totalQuestions = await Question.countDocuments(filterQuery);
 
     const questions = await Question.find(filterQuery)
@@ -116,6 +140,7 @@ export const getTagQuestions = async (
         { path: "author", select: "name image" },
         { path: "tags", select: "name" },
       ])
+      .sort(sortCriteria)
       .skip(skip)
       .limit(limit);
 

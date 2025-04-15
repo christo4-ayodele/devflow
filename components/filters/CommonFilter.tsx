@@ -20,7 +20,7 @@ interface Filter {
 interface Props {
   filters: Filter[];
   otherClasses: string;
-  containerClasses: string;
+  containerClasses?: string;
 }
 const CommonFilter = ({
   filters,
