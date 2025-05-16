@@ -10,6 +10,7 @@ import DataRenderer from "@/components/DataRenderer";
 import { EMPTY_QUESTION } from "@/constants/states";
 import CommonFilter from "@/components/filters/CommonFilter";
 import { HomePageFilters } from "@/constants/filters";
+import Pagination from "@/components/Pagination";
 
 // const questions = [
 //   {
@@ -66,7 +67,7 @@ const Home = async ({ searchParams }: SearchParams) => {
     filter: filter || "",
   });
 
-  const { questions } = data || {};
+  const { questions, isNext } = data || {};
   // const filteredQuestions = questions.filter((question) => {
   //   const matchesQuery = question.title
   //     .toLowerCase()
@@ -120,6 +121,8 @@ const Home = async ({ searchParams }: SearchParams) => {
           </div>
         )}
       />
+
+      <Pagination page={page} isNext={isNext || false} />
     </>
   );
 };

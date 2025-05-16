@@ -149,6 +149,8 @@ export async function getSavedQuestions(
 
   try {
     const totalQuestions = await Question.countDocuments(filterQuery);
+    console.log("total questions: ", totalQuestions);
+    console.log("skip: ", skip);
 
     const questions = await Collection.find(filterQuery)
       .populate({
@@ -161,7 +163,7 @@ export async function getSavedQuestions(
       .sort(sortCriteria)
       .skip(skip)
       .limit(limit);
-
+    console.log("questions: ", questions.length);
     const isNext = totalQuestions > skip + questions.length;
 
     return {
