@@ -1,3 +1,5 @@
+import { StringValidation } from "zod";
+
 interface SignInWithOAuthParams {
   provider: "github" | "google";
   providerAccountId: string;
@@ -74,5 +76,9 @@ interface GetUserParams {
 
 interface GetUserQuestionsParams
   extends Omit<PaginationSearchParams, "query" | "filter" | "sort"> {
+  userId: string;
+}
+
+interface getUserAnswersParams extends PaginatedSearchParams {
   userId: string;
 }
