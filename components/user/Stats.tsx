@@ -9,7 +9,7 @@ interface Props {
 
 interface StatsCardProps {
   imgUrl: string;
-  value: string;
+  value: number;
   title: string;
 }
 
