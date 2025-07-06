@@ -1,3 +1,4 @@
+import { IInteractionDoc } from "@/database/interaction.model";
 import { StringValidation } from "zod";
 
 interface SignInWithOAuthParams {
@@ -89,4 +90,30 @@ interface GetUserTagsParams {
 
 interface DeleteQuestionParams {
   questionId: string;
+}
+
+interface DeleteAnswerParams {
+  answerId: string;
+}
+
+interface CreateInteractionParams {
+  action:
+    | "view"
+    | "upvote"
+    | "downvote"
+    | "bookmark"
+    | "post"
+    | "edit"
+    | "delete"
+    | "search";
+  actionId: string;
+  authorId: string;
+  actionTarget: "question" | "answer";
+}
+
+interface UpdateReputationParams {
+  interaction: IInteractionDoc;
+  session: mongoose.ClientSession;
+  performerId: string;
+  authorId: string;
 }

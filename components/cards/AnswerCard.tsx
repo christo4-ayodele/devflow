@@ -37,7 +37,7 @@ const AnswerCard = ({
       <span id={`answer-${_id}`} className="hash-span" />
       {showActionBtns && (
         <div className="background-light800 flex-center absolute -right-2 -top-5 size-9 rounded-full">
-          <EditDeleteAction type="answer" itemId={_id} />
+          <EditDeleteAction type="Answer" itemId={_id} />
         </div>
       )}
       <div className="mb-5 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
