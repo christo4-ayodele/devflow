@@ -18,6 +18,8 @@ import {
   DeleteAnswerParams,
   GetAnswersParams,
 } from "@/types/action";
+import { after } from "next/server";
+import { createInteraction } from "./interactions.action";
 export async function createAnswer(
   params: CreateAnswerParams
 ): Promise<ActionResponse<IAnswerDoc>> {
@@ -60,6 +62,16 @@ export async function createAnswer(
 
     question.answers += 1;
     await question.save({ session });
+
+    //log the interaction
+    after(async () => {
+      await createInteraction({
+        action: "post",
+        actionId: newAnswer.id,
+        actionTarget: "answer",
+        authorId: userId as string,
+      });
+    });
 
     await session.commitTransaction();
 

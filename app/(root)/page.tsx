@@ -11,6 +11,7 @@ import { EMPTY_QUESTION } from "@/constants/states";
 import CommonFilter from "@/components/filters/CommonFilter";
 import { HomePageFilters } from "@/constants/filters";
 import Pagination from "@/components/Pagination";
+import SignIn from "@/components/sign-in";
 
 // const questions = [
 //   {
@@ -82,6 +83,7 @@ const Home = async ({ searchParams }: SearchParams) => {
 
   return (
     <>
+      <SignIn />
       <section className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row  sm:items-center">
         <h1 className="h1-bold text-dark100_light900">All Questions</h1>
 
