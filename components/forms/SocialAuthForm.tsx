@@ -13,23 +13,36 @@ const SocialAuthForm = () => {
     "background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 rounded-2 px-4 py-3.5";
 
   const handleSignIn = async (provider: "github" | "google") => {
-    try {
-      await signIn(provider, {
-        callbackUrl: ROUTES.HOME,
-        redirect: false,
-      });
-    } catch (error) {
-      console.log(error);
+    const result = await signIn(provider, {
+      redirectTo: ROUTES.HOME,
+      redirect: false,
+    });
 
+    if (result?.error) {
       toast({
         title: "Sign-in failed",
-        description:
-          error instanceof Error
-            ? error.message
-            : "An error occured during sign-in",
+        description: result.error,
         variant: "destructive",
       });
+    } else if (result?.url) {
+      window.location.href = result.url; //manually redirect
     }
+    // try {
+    //   await signIn(provider, {
+    //     callbackUrl: ROUTES.HOME,
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+
+    //   toast({
+    //     title: "Sign-in failed",
+    //     description:
+    //       error instanceof Error
+    //         ? error.message
+    //         : "An error occured during sign-in",
+    //     variant: "destructive",
+    //   });
+    // }
   };
   return (
     <div className="mt-10 flex flex-wrap gap-2.5">
